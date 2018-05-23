@@ -3,7 +3,16 @@ import { connect } from 'react-redux';
 
 const Lists = (props)=> {
 
-	const lists = props.lists.map((list)=>{
+	if(!props.lists || props.lists == []) {
+		return(
+			<div>
+				No Lists yet... <br/>
+				Please add comments.
+			</div>
+		);
+	}
+
+	const list = props.lists.map((list)=>{
 		return (
 			<li key={list}>
 				{list}
@@ -14,11 +23,10 @@ const Lists = (props)=> {
 	return (
 		<div className="lists">
 			<ul className="single-list">
-				{lists}
+				{list}
 			</ul>
 		</div>	
 	);
-	
 }
 
 function mapStateToProps(state) {
